@@ -240,7 +240,7 @@ const StudentLoginForm = () => {
                         </div>
 
                         <div className="form-group half-width">
-                            <label htmlFor="clubsMembership">Clubs/Societies Membership:</label>
+                            <label htmlFor="clubsMembership">Clubs/Societies Membership id:</label>
                             <input
                                 type="text"
                                 id="clubsMembership"

@@ -1,7 +1,5 @@
-// EventRegistrationForm.js
-
 import React, { useState } from 'react';
-import { db, storage } from '../firebase'; // Adjust the path as needed
+import { db, storage } from '../firebase'; 
 import { useNavigate } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -11,10 +9,12 @@ const EventRegistrationForm = () => {
         eventName: '',
         eventDate: '',
         eventTime: '',
+        eventDuration: '', 
+        eventDescription: '', 
         participantName: '',
         participantEmail: '',
-        ticketPrice: '', // New field for ticket price
-        images: [], // Store URLs for uploaded images
+        ticketPrice: '', 
+        images: [], 
     });
 
     const [imageFiles, setImageFiles] = useState([]);
@@ -65,7 +65,7 @@ const EventRegistrationForm = () => {
                 images: uploadedImages,
             });
 
-            navigate('/thank-you'); // Redirect to a thank-you page after submission
+            navigate('/thank-you'); 
         } catch (error) {
             console.error("Error saving event registration:", error);
         }
@@ -75,6 +75,7 @@ const EventRegistrationForm = () => {
         <div className="fullscreen-container">
             <div className="form-container">
                 <h2>Event Registration</h2>
+                
                 <form onSubmit={handleSubmit}>
                     <div className="form-row">
                         <div className="form-group half-width">
@@ -112,6 +113,31 @@ const EventRegistrationForm = () => {
                                 required
                             />
                         </div>
+                        <div className="form-group half-width">
+                            <label htmlFor="eventDuration">Event Duration (hours):</label>
+                            <input
+                                type="number"
+                                id="eventDuration"
+                                name="eventDuration"
+                                value={formData.eventDuration}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group full-width">
+                            <label htmlFor="eventDescription">Event Description:</label>
+                            <textarea
+                                id="eventDescription"
+                                name="eventDescription"
+                                value={formData.eventDescription}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="form-row">
                         <div className="form-group half-width">
                             <label htmlFor="ticketPrice">Ticket Price:</label>
                             <input
